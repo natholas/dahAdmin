@@ -1,0 +1,14 @@
+<div class="orders row">
+  <a ng-href="/order/{{order.id}}" class="order" ng-repeat="order in orders | objToArray | limitTo : limit">
+
+    <div class="order-content">
+      <h3 class="bottomless">{{order.entrepreneur.name}}</h3>
+      <ul class="un">
+        <li>Order <b>#{{order.id | paddNumber : 8}}</b></li>
+        <li>Invested: <b>{{order.amount | money}}</b></li>
+        <li>Donation: <b>{{order.donationAmount | money}}</b></li>
+      </ul>
+    </div>
+
+  </a>
+</div>

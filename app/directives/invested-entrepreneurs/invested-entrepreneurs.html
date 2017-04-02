@@ -1,0 +1,26 @@
+<div class="invested-entrepreneurs row">
+  <div class="entrepreneur" ng-repeat="entrepreneur in investedEntrepreneurs | objToArray | limitTo : limit">
+    <div class="tag">{{entrepreneur.status}}</div>
+    <a ng-href="/entrepreneur/{{entrepreneur.id}}">
+      <div
+        ng-if="entrepreneur.images[0]"
+        class="entrepreneur-image"
+        ng-style="{'background-image': 'url(' + backend_endpoint + entrepreneur.images[0] + ')'}">
+      </div>
+      <div
+        ng-if="!entrepreneur.images[0]"
+        class="entrepreneur-image"
+        ng-style="{'background-image': 'url(' + backend_endpoint + 'images/entrepreneur_default.svg' + ')'}">
+      </div>
+    </a>
+
+    <div class="entrepreneur-content">
+      <h2 class="bottomless"><a ng-href="/entrepreneur/{{entrepreneur.id}}">{{entrepreneur.name}}</a></h2>
+      Total invested: <b>{{entrepreneur.accountInvestment | money}}</b>
+      <ul class="un">
+        <li ng-repeat="order in entrepreneur.orders"><a ng-href="/order/{{order.id}}">{{order.orderTime | date : 'dd/MM/yyyy'}} - {{order.amount | money}}</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>

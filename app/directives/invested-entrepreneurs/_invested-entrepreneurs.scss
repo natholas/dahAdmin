@@ -1,0 +1,48 @@
+.invested-entrepreneurs {
+
+
+  .entrepreneur {
+    position: relative;
+    border: 2px solid #ebf0f0;
+    overflow: hidden;
+
+    @include box(12, false, false);
+
+    @include media($medium-screen) {
+      @include box(6, false, false);
+    }
+
+    @include media($large-screen) {
+      @include box(4, false, false);
+    }
+
+    color: inherit;
+
+    .entrepreneur-content {
+      padding: $gutter;
+    }
+
+    .entrepreneur-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+}
+
+.tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%,-50%) rotate(45deg) translateY(40px);
+  transform-origin: center;
+  background-color: $colour-red;
+  padding: #{$gutter/2} 0;
+  text-align: center;
+  width: 120px;
+  color: #fff;
+  z-index: 9;
+  pointer-events: none;
+  font-size: 12px;
+  font-weight: bold;
+}

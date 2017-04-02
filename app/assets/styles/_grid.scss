@@ -1,0 +1,206 @@
+// grid ////////////////////////////////////////////////////////////////////////
+
+/*
+ * index ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *
+ * 1. paths
+ * 2. typography
+ * 3. colors
+ * 4. layout
+ * 5. misc
+ *
+ */
+
+
+// box border
+$box-border: 1px;
+
+// box border color
+$box-border-color: #666666;
+
+// box order positions
+$box-order-positions: 10;
+
+// box sizes
+$box-sizes : (
+  1:  (12),
+  2:  (12),
+  3:  (12),
+  4:  (12),
+  5:  (12),
+  6:  (12),
+  7:  (12),
+  8:  (12),
+  9:  (12),
+  10: (12),
+  11: (12),
+  12: (12)
+);
+
+// box generator ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+@mixin generate-grid($breakpoint:'') {
+  @each $key, $box-size in $box-sizes {
+
+    @for $i from 1 to (length($box-size)+1) {
+      $box-size-percentage: (percentage($key/nth($box-size, $i)));
+      .box#{$breakpoint}-#{$key}-#{nth($box-size, $i)} {
+        margin-left: $gutter;
+        margin-right: $gutter;
+        width: calc(#{$box-size-percentage} - #{$gutter*2});
+      }
+    }
+  }
+}
+
+@mixin box($box-size, $is-first: false, $is-last: false) {
+  $box-size-percentage: (percentage($box-size/$grid-columns));
+  box-sizing: border-box;
+  flex: 0 0 auto;
+
+  @if $is-first == true {
+    width: calc(#{$box-size-percentage} - #{$gutter});
+    margin-right: 0;
+    margin-left: $gutter;
+  }
+  @else if $is-last == true {
+    width: calc(#{$box-size-percentage} - #{$gutter});
+    margin-right: $gutter;
+    margin-left: 0;
+  }
+  @else {
+    margin: 0 $gutter;
+    width: calc(#{$box-size-percentage} - #{$gutter*2});
+  }
+}
+
+// flexbox boxes ordering modifier ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+@mixin box-order($breakpoint:'') {
+  @for $i from 1 to ($box-order-positions+1) {
+    .box-order#{$breakpoint}-#{$i} {
+      order: $i;
+    }
+  }
+}
+
+
+// row - the box wrapper ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+@mixin row() {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 (-$gutter);
+}
+
+.row {
+  @include row();
+
+  .row {
+    margin: 0 $gutter;
+  }
+
+  // padding reset
+
+  [class^="box-"] {
+    position: relative;
+    .row & .row & {
+      padding: 0 $gutter;
+    }
+  }
+}
+
+// row modifiers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.row-border {
+  > [class^="box"] {
+    border: $box-border solid $box-border-color;
+  }
+}
+
+/*.row-gutter {
+  margin: 0 (-$gutter/2);
+}*/
+
+.row-padding {
+  > [class^="box"] {
+    padding: $gutter;
+  }
+}
+
+.row-padding-horizontal {
+  > [class^="box"] {
+    padding-left: $gutter;
+    padding-right: $gutter;
+  }
+}
+
+.row-padding-vertical {
+  > [class^="box"] {
+    padding-bottom: $gutter;
+    padding-top: $gutter;
+  }
+}
+
+.row-reverse {
+  flex-direction: row-reverse;
+}
+
+.row-valign-top {
+  align-items: flex-start;
+}
+
+.row-valign-center {
+  align-items: center;
+}
+
+.row-valign-bottom {
+  align-items: flex-end;
+}
+
+.row-align-center {
+  justify-content: center;
+}
+
+.row-align-right {
+  justify-content: flex-end;
+}
+
+/* base boxes */
+@include generate-grid();
+
+/* medium screen boxes */
+@media screen and (min-width: $medium-screen) {
+  @include generate-grid('-m');
+}
+
+/* large screen boxes */
+@media screen and (min-width: $large-screen) {
+  @include generate-grid('-l');
+}
+
+/* medium screen box ordering */
+@media screen and (min-width: $medium-screen) {
+  @include box-order('-m');
+}
+
+/* large screen box ordering */
+@media screen and (min-width: $large-screen) {
+  @include box-order('-l');
+}
+
+/* box modifiers */
+.box-valign-top {
+  align-self: flex-start;
+}
+
+.box-valign-bottom {
+  align-self: flex-end;
+}
+
+.box-valign-center {
+  align-self: center;
+}

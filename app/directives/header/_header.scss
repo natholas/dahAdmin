@@ -1,0 +1,31 @@
+.header {
+  width: 100%;
+  padding: $gutter 0;
+  margin: auto;
+  z-index: 99;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  transition: all .2s ease;
+
+  .content {
+    max-width: $max-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 $gutter;
+    position: relative;
+  }
+
+  .logo {
+    float: left;
+    height: 30px;
+    margin-right: $gutter;
+    transition: all .2s ease;
+  }
+
+  &.scrolled {
+    border-bottom: 2px solid $colour-light;
+    background-color: #fff;
+  }
+
+}

@@ -1,0 +1,16 @@
+.entrepreneur-investors {
+  .investor {
+    @include box(3, false, false);
+
+    color: $colour-dark;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: $gutter;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $colour-dark;
+    }
+  }
+}

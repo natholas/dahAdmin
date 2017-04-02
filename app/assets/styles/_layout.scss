@@ -1,0 +1,201 @@
+// layout /////////////////////////////////////////////////////////////////////
+
+
+/*
+ * index ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *
+ * 1. base
+ * 2. sections
+ * 3. blocks
+ * 4. misc
+ *
+ */
+
+
+// 1. base ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.screen {
+  line-height: 1.4;
+  color: $colour-dark;
+}
+
+container {
+  display: block;
+  min-height: calc(100vh - 46px);
+}
+
+
+// 2. sections ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.screenblock {
+  padding: 80px 0;
+  background-color: $colour-white;
+  z-index: 2;
+  position: relative;
+
+  &.shrinked {
+    padding: 0;
+  }
+
+  &.cozy {
+    padding: $gutter 0;
+  }
+
+  &.primary-colour {
+    background-color: $colour-primary;
+    color: #fff;
+  }
+
+  &.dark-colour {
+    background-color: $colour-dark;
+    color: #fff;
+  }
+
+  &.light-colour {
+    background-color: $colour-light;
+  }
+
+  &.headerify {
+    padding-top: 120px;
+  }
+
+  .content {
+    @include outer-container();
+    padding: $gutter;
+    position: relative;
+  }
+}
+
+// 3. blocks ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.block-8-4 {
+  @include row();
+
+  .mainblock {
+    @include box(12);
+    //border-right: 1px solid $ya-color-smoke;
+
+    @include media($medium-screen) {
+      padding-right: $gutter*2;
+      @include box(8);
+    }
+
+    @include media($large-screen) {
+      padding-right: $gutter*2;
+      @include box(8);
+    }
+
+  }
+
+  .sideblock {
+    @include box(12);
+
+    button,
+    .button {
+      font-size: 24px;
+      width: 100%;
+    }
+
+    @include media($medium-screen) {
+      @include box(4);
+    }
+
+    @include media($large-screen) {
+      @include box(4);
+    }
+  }
+}
+
+// 4. misc ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+figure {
+  margin: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.popup-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  overflow-y: scroll;
+  background-color: rgba(0,0,0,.8);
+}
+
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  height: 480px;
+  width: 600px;
+  overflow: auto;
+  box-shadow: 0 0 15px 5px rgba(0,0,0,.2);
+  background-color: #fff;
+
+  .popup-header {
+    border-bottom: 1px solid #e8ecf2;
+    padding: 12px 24px;
+    background-color: #f2f2f2;
+    position: relative;
+
+    .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 65px;
+      width: 65px;
+      line-height: 65px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0);
+      border: none;
+      font-size: 18px;
+      color: #687079;
+      margin: 0;
+    }
+  }
+
+  .popup-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    padding: 12px 0 10px;
+    line-height: 1;
+  }
+
+  .popup-content {
+    padding: 12px 24px;
+  }
+
+}
+
+.mainContent {
+  @include box(12, false, false);
+
+  @include media($medium-screen) {
+    @include box(8, false, false);
+  }
+
+  @include media($large-screen) {
+    @include box(9, false, false);
+  }
+}
+
+.sidebar {
+  @include box(12, false, false);
+
+  @include media($medium-screen) {
+    @include box(4, false, false);
+  }
+
+  @include media($large-screen) {
+    @include box(3, false, false);
+  }
+}

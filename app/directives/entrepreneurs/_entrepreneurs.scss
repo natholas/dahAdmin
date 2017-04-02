@@ -1,0 +1,54 @@
+.entrepreneurs {
+  .entrepreneur {
+
+    color: inherit;
+    cursor: pointer;
+
+    &:hover {
+      color: inherit;
+    }
+
+    @include box(12, false, false);
+
+    @include media($medium-screen) {
+      @include box(6, false, false);
+    }
+
+    @include media($large-screen) {
+      @include box(4, false, false);
+    }
+
+    border: 2px solid $colour-light;
+    border-radius: 4px;
+    overflow: hidden;
+
+    .entrepreneur-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .entrepreneur-content {
+      padding: $gutter;
+      height: 170px;
+    }
+
+    .entrepreneur-meta {
+      padding: $gutter;
+
+      .info-box {
+        padding: $gutter 0 0 0;
+        font-size: 10pt;
+        margin: 0;
+
+        div:first-of-type {
+          float: left;
+        }
+
+        div:last-of-type {
+          float: right;
+        }
+      }
+    }
+  }
+}

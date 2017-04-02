@@ -1,0 +1,15 @@
+main-menu {
+  float: left;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  ul {
+    li {
+      display: inline-block;
+      a {
+        padding: $gutter/2 $gutter;
+        display: block;
+      }
+    }
+  }
+}

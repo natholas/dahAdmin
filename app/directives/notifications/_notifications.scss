@@ -1,0 +1,17 @@
+.notifications {
+  .notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: $colour-red;
+    color: #fff;
+    z-index: 500;
+    padding: $gutter;
+    text-align: center;
+
+    &.good {
+      background: $colour-primary;
+    }
+  }
+}

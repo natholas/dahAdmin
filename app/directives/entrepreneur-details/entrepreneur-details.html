@@ -1,0 +1,33 @@
+<div class="entrepreneur row">
+
+  <div class="mainContent">
+    <h2>About {{entrepreneur.name}}</h2>
+    <p>{{entrepreneur.description}}</p>
+  </div>
+
+  <div class="sidebar">
+    <h2>Statistics</h2>
+    <investment-progress data="entrepreneur"></investment-progress>
+
+    <ul class="un">
+      <li>Goal: <b>{{entrepreneur.amountNeeded | money}}</b></li>
+      <li>Missing: <b>{{entrepreneur.stillNeeded | money}}</b></li>
+      <li>Funded: <b>{{100 / entrepreneur.amountNeeded * entrepreneur.totalInvested | number : 0}}%</b></li>
+      <li>Investors: <b>{{entrepreneur.investors.length}}</b></li>
+      <li>Location: <b>{{entrepreneur.city}} {{entrepreneur.countryName}}</b></li>
+    </ul>
+    <br>
+    <br>
+    <div class="formrow">
+      <div class="formfield">
+        <select ng-model="investmentAmount" id="investment-amount">
+          <option ng-repeat="amount in amounts" ng-value="amount">{{amount | money}}</option>
+        </select>
+        <label for="investment-amount">Investment amount</label>
+      </div>
+    </div>
+    <br>
+    <a ng-href="/checkout/{{entrepreneur.id}}/{{investmentAmount}}" class="button full-width">Invest</a>
+  </div>
+
+</div>

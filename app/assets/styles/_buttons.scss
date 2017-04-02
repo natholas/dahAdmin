@@ -1,0 +1,83 @@
+button,
+.button,
+input[type='submit'] {
+  background: $colour-primary;
+  color: $colour-white;
+  border: none;
+  padding: $gutter / 2 $gutter;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: $border-radius;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &:not(.close-button):before {
+    position: absolute;
+    content: '';
+    background-color: $colour-white;
+    opacity: .3;
+    transition: all .2s ease;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 0;
+    width: 0;
+    border-radius: 50%;
+  }
+
+  &.close-button {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999px;
+    position: absolute;
+    right: #{-$gutter};
+    top: #{-$gutter};
+    z-index: 4;
+    transform: rotate(0deg);
+    transition: all .5s ease;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
+
+    &:before,
+    &:after {
+      position: absolute;
+      content: "";
+      left: calc(50% - 1px);
+      top: #{$gutter / 2};
+      transform-origin: center;
+      transform: rotate(45deg);
+      border-left: 2px solid #fff;
+      height: calc(100% - #{$gutter});
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  &:not(.close-button):hover {
+    &:before {
+      height: 4em;
+      width: 4em;
+    }
+  }
+
+  &:not(.close-button):active,
+  &:not(.close-button):focus {
+    &:before {
+      height: 10em;
+      width: 10em;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<section class="screenblock light-colour headerify">
+  <div class="content">
+    <h1 class="bottomless">Hello {{Account.userDetails.nickname}}</h1>
+  </div>
+</section>
+
+<section class="screenblock">
+  <div class="content">
+    <h1>Your entrepreneurs</h1>
+    <invested-entrepreneurs data="account.investedEntrepreneurs" limit="3"></invested-entrepreneurs>
+    <div ng-show="(account.investedEntrepreneurs | objSize) > 3" class="center">
+      <br>
+      <a href="/account/entrepreneurs" class="button">View all</a>
+    </div>
+  </div>
+</section>
+
+<section class="screenblock light-colour">
+  <div class="content">
+    <h1>Your investments</h1>
+    <orders data="account.orders" limit="3"></orders>
+    <div ng-show="(account.orders | objSize) > 3" class="center">
+      <br>
+      <a href="/account/investments" class="button">View all</a>
+    </div>
+  </div>
+</section>

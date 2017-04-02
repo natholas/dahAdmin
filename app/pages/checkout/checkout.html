@@ -1,0 +1,106 @@
+<section class="screenblock light-colour headerify">
+  <div class="content">
+    <h1 class="bottomless">Investing {{order.amount | money}} in {{order.entrepreneur.name}}</h1>
+  </div>
+</section>
+
+<form name="checkoutForm" ng-submit="checkoutForm.$valid && Checkout.init(order)" novalidate>
+  <section class="screenblock cozy">
+    <div class="content row">
+      <div class="mainContent">
+        <div ng-if="!Account.loginToken">
+          <h3 class="bottomless">Your details</h3>
+          <p class="headless">Once your order is complete, you will be able to use the details you enter below to login.</p>
+          <div class="formrow">
+            <div class="formfield field-50">
+              <input
+                type="text"
+                id="nickname"
+                minlength="5"
+                maxlength="20"
+                ng-model="order.user.nickname"
+                name="name"
+                required
+              >
+              <label for="nickname">Your name</label>
+            </div>
+            <div class="formfield field-50">
+              <input
+                type="email"
+                id="email"
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}"
+                minlength="7"
+                maxlength="64"
+                name="email"
+                ng-model="order.user.emailAddress"
+                required
+              >
+              <label for="email">Your Email address</label>
+            </div>
+          </div>
+          <div class="formrow">
+            <div class="formfield field-50">
+              <input
+                type="password"
+                id="password"
+                minlength="8"
+                maxlength="128"
+                ng-model="order.user.password"
+                required
+              >
+              <label for="password">Create a Password</label>
+            </div>
+            <div class="formfield field-50">
+              <input
+                type="password"
+                id="repeatPassword"
+                minlength="8"
+                maxlength="128"
+                ng-model="order.user.repeatPassword"
+                required
+              >
+              <label for="repeatPassword">Repeat password</label>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="bottomless">Add a message</h3>
+        <div class="formrow">
+          <div class="formfield field-100">
+            <textarea if="message" rows="6" ng-model="order.message" maxlength="280"></textarea>
+            <label for="message">Message</label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sidebar">
+        <h3>Overview</h3>
+        <div class="formfield field-100">
+          <select ng-model="order.donationAmount" id="donation-amount">
+            <option ng-repeat="amount in donationAmounts" ng-value="amount">{{amount | money}}</option>
+          </select>
+          <label for="donation-amount">Donation to dignity & hope</label>
+        </div>
+
+        <ul class="un">
+          <li>
+            <b class="small">Investment</b><br>
+            <b class="headless">{{order.amount | money}}</b>
+          </li>
+          <li>
+            <b class="small">Donation to dignity & hope</b><br>
+            <b class="headless">{{order.donationAmount | money}}</b>
+          </li>
+          <li>
+            <b class="small">Total</b><br>
+            <h3 class="headless">{{order.amount + order.donationAmount | money}}</h3>
+          </li>
+        </ul>
+        <br>
+        <button class=full-width>To payment</button>
+      </div>
+
+    </div>
+  </section>
+</form>

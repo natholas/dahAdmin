@@ -1,0 +1,28 @@
+.orders {
+  a.order {
+    border: 2px solid #ebf0f0;
+    background-color: #fff;
+
+    @include box(12, false, false);
+
+    @include media($medium-screen) {
+      @include box(6, false, false);
+    }
+
+    @include media($large-screen) {
+      @include box(4, false, false);
+    }
+
+    color: inherit;
+
+    .order-content {
+      padding: $gutter;
+    }
+
+    .entrepreneur-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+}

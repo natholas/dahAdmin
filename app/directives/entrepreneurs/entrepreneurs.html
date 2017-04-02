@@ -1,0 +1,38 @@
+<div class="entrepreneurs row">
+  <a class="entrepreneur" ng-repeat="entrepreneur in data.entrepreneurs | objToArray | orderBy : 'stillNeeded' | filter : {status: 'LIVE'}" ng-href="/entrepreneur/{{entrepreneur.id}}">
+    <div class="tag" ng-show="account.investedEntrepreneurs[entrepreneur.id]">
+      INVESTED
+    </div>
+    <div
+      ng-if="entrepreneur.images[0]"
+      class="entrepreneur-image"
+      ng-style="{'background-image': 'url(' + backend_endpoint + entrepreneur.images[0] + ')'}">
+    </div>
+    <div
+      ng-if="!entrepreneur.images[0]"
+      class="entrepreneur-image"
+      ng-style="{'background-image': 'url(' + backend_endpoint + 'images/entrepreneur_default.svg' + ')'}">
+    </div>
+    <div class="entrepreneur-content">
+      <h3>{{entrepreneur.name}}</h3>
+      <p>{{entrepreneur.description | limitTo: 100}}</p>
+    </div>
+    <div class="entrepreneur-meta">
+      <div class="info-box">
+        {{entrepreneur.city}} {{entrepreneur.countryName}}
+      </div>
+      <investment-progress data="entrepreneur"></investment-progress>
+      <div class="info-box">
+        <div>
+          <b>{{100 / entrepreneur.amountNeeded * entrepreneur.totalInvested | number : 0}}%</b><br>
+          funded
+        </div>
+        <div>
+          <b>{{entrepreneur.totalInvested | money}}</b><br>
+          invested
+        </div>
+        <clearfix></clearfix>
+      </div>
+    </div>
+  </a>
+</div>

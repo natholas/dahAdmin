@@ -1,0 +1,50 @@
+a:not(.button) {
+  color: $colour-primary;
+  text-decoration: none;
+  position: relative;
+  outline: none;
+
+  &:after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    transform: translateX(-50%);
+    border-bottom: 1px solid $colour-primary;
+    transition: all .2s ease;
+  }
+
+  &.red {
+    color: $colour-red;
+    &:after {
+      border-color: $colour-red;
+    }
+  }
+
+  .primary-colour & {
+    &:after {
+      border-bottom-color: $colour-red;
+    }
+  }
+
+  &:hover {
+    &:after {
+      width: 100%;
+    }
+  }
+
+  &:active {
+    &:after {
+      width: 100%;
+    }
+  }
+
+  &:active,
+  &:focus {
+    opacity: .8;
+    &:after {
+      opacity: .8;
+    }
+  }
+}
