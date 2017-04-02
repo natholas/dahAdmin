@@ -1,33 +1,81 @@
-<div class="entrepreneur row">
+<div class="entrepreneur">
 
-  <div class="mainContent">
-    <h2>About {{entrepreneur.name}}</h2>
-    <p>{{entrepreneur.description}}</p>
-  </div>
+  <form name="updateEntrepreneurForm" ng-submit="updateEntrepreneurForm.$valid && entrepreneur.update()" class="row" novalidate>
 
-  <div class="sidebar">
-    <h2>Statistics</h2>
-    <investment-progress data="entrepreneur"></investment-progress>
+    <div class="mainContent">
 
-    <ul class="un">
-      <li>Goal: <b>{{entrepreneur.amountNeeded | money}}</b></li>
-      <li>Missing: <b>{{entrepreneur.stillNeeded | money}}</b></li>
-      <li>Funded: <b>{{100 / entrepreneur.amountNeeded * entrepreneur.totalInvested | number : 0}}%</b></li>
-      <li>Investors: <b>{{entrepreneur.investors.length}}</b></li>
-      <li>Location: <b>{{entrepreneur.city}} {{entrepreneur.countryName}}</b></li>
-    </ul>
-    <br>
-    <br>
-    <div class="formrow">
-      <div class="formfield">
-        <select ng-model="investmentAmount" id="investment-amount">
-          <option ng-repeat="amount in amounts" ng-value="amount">{{amount | money}}</option>
-        </select>
-        <label for="investment-amount">Investment amount</label>
+      <div class="formrow">
+        <div class="formfield field-50">
+          <input type="text" ng-model="entrepreneur.name" id="entrepreneurName" required>
+          <label for="entrepreneurName">Name</label>
+        </div>
+        <div class="formfield field-50">
+          <input type="date" ng-model="entrepreneur.dob" id="entrepreneurDob" required>
+          <label for="entrepreneurDob">Date of birth</label>
+        </div>
       </div>
+
+      <div class="formrow">
+        <div class="formfield field-100">
+          <textarea id="entrepreneurDescription" ng-model="entrepreneur.description" rows="5" cols="80" required></textarea>
+          <label for="entrepreneurDescription">Description</label>
+        </div>
+      </div>
+
+      <div class="formrow">
+        <div class="formfield field-50">
+          <input type="text" ng-model="entrepreneur.city" id="entrepreneurCity" required>
+          <label for="entrepreneurCity">City</label>
+        </div>
+        <div class="formfield field-50">
+          <select id="entrepreneurCountry" ng-model="entrepreneur.countryId" required>
+            <option ng-repeat="(key, country) in countries" ng-value="key*1">{{country}}</option>
+          </select>
+          <label for="entrepreneurCountry">Country</label>
+        </div>
+      </div>
+
+      <div class="formrow">
+        <div class="formfield field-50">
+          <input type="number" ng-model="entrepreneur.amountNeeded" ng-model-options="{allowInvalid: true}" ng-min="entrepreneur.totalInvested" id="amountNeeded" required>
+          <label for="amountNeeded">Amount needed</label>
+        </div>
+        <div class="formfield field-50">
+          <select id="entrepreneurCountry" ng-model="entrepreneur.status" required>
+            <option ng-repeat="status in statuses">{{status}}</option>
+          </select>
+          <label for="entrepreneurCountry">Status</label>
+        </div>
+      </div>
+
+      <br>
+      <div class="formrow">
+        <div class="formfield field-100">
+          <label for="">Image</label>
+          <input type="file" ng-model="entrepreneur.newImage" accept="image/jpeg" base-sixty-four-input>
+        </div>
+      </div>
+
     </div>
-    <br>
-    <a ng-href="/checkout/{{entrepreneur.id}}/{{investmentAmount}}" class="button full-width">Invest</a>
-  </div>
+
+    <div class="sidebar">
+
+      <h2>Statistics</h2>
+      <investment-progress data="entrepreneur"></investment-progress>
+      <ul class="un">
+        <li>Goal: <b>{{entrepreneur.amountNeeded | money}}</b></li>
+        <li>Missing: <b>{{entrepreneur.amountNeeded - entrepreneur.totalInvested | money}}</b></li>
+        <li>Funded: <b>{{100 / entrepreneur.amountNeeded * entrepreneur.totalInvested | number : 0}}%</b></li>
+        <li>Investors: <b>{{entrepreneur.investors.length}}</b></li>
+        <li>Location: <b>{{entrepreneur.city}} {{entrepreneur.countryName}}</b></li>
+      </ul>
+      <br>
+      <button class="full-width" ng-show="entrepreneur.id">Update</button>
+      <button class="full-width" ng-show="!entrepreneur.id">Add</button>
+      <br><br>
+      <a href ng-show="entrepreneur.id" ng-click="entrepreneur.reset()">Reset</a>
+    </div>
+
+  </form>
 
 </div>

@@ -158,6 +158,7 @@ function concatJsFiles(dest, callback, preload) {
   return gulp.src([
     'node_modules/angular/angular.min.js',
     'node_modules/angular-route/angular-route.min.js',
+    'node_modules/angular-base64-upload/dist/angular-base64-upload.min.js',
     'app/*.js',
     'app/**/*.js',
     'app/**/**/*.js'

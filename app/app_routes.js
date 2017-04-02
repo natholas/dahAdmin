@@ -1,7 +1,11 @@
 app.config(function($routeProvider) {
   $routeProvider
   .when('/', {
-    templateUrl: 'pages/home/home.html'
+    templateUrl: 'pages/dash/dash.html'
+  })
+  .when('/login', {
+    templateUrl: 'pages/login/login.html',
+    controller: 'loginCtrl'
   })
   .when('/entrepreneurs', {
     templateUrl: 'pages/entrepreneurs/entrepreneurs.html'
@@ -17,31 +21,15 @@ app.config(function($routeProvider) {
       }
     }
   })
-  .when('/checkout/:entrepreneurId/:investmentAmount', {
-    template: '<div ng-include="getTemplate()"></div>',
-    controller: 'checkoutCtrl',
+  .when('/new-entrepreneurs', {
+    templateUrl: 'pages/entrepreneur/entrepreneur.html',
+    controller: 'entrepreneurCtrl',
     resolve: {
-      order: function(ResolveCheckout) {
-        return ResolveCheckout().then(function(response) {
-          return response;
-        });
+      entrepreneur: function(ResolveNewEntrepreneur) {
+        return ResolveNewEntrepreneur();
       }
     }
   })
-  .when('/confirmation', {
-    templateUrl: 'pages/confirmation/confirmation.html'
-  })
-  .when('/paymentfailed', {
-    templateUrl: 'pages/payment-failed/payment-failed.html'
-  })
-  .when('/confirmemail', {
-    templateUrl: 'pages/confirm-email/confirm-email.html'
-  })
-  .when('/account', {
-    template: '<div ng-include="getTemplate()"></div>',
-    controller: 'accountCtrl'
-  })
-
   .otherwise({
     templateUrl: 'pages/404/404.html'
   });

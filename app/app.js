@@ -1,5 +1,5 @@
 angular.module('templates', []);
-var app = angular.module('app', ['ngRoute', 'templates'])
+var app = angular.module('app', ['ngRoute', 'templates', 'naif.base64'])
 
 .config(function($routeProvider, $locationProvider, $httpProvider) {
   $locationProvider.html5Mode(true);
@@ -8,9 +8,16 @@ var app = angular.module('app', ['ngRoute', 'templates'])
   $routeProvider.when = function(path, route) {
     route.resolve || (route.resolve = {});
     angular.extend(route.resolve, {
-      visitorToken: function(Bootloader) {
+      visitorToken: function(Bootloader, Account, $location) {
         return Bootloader.init().then(function(response) {
-          return response;
+          Account.init();
+          if (['ADMIN', 'SUPER'].indexOf(Account.role) > -1) {
+            if ($location.path() == '/login') {
+              $location.path('/');
+            } else return response;
+          } else if ($location.path() != '/login') {
+            $location.path('/login');
+          }
         });
       }
     });
@@ -32,7 +39,7 @@ var app = angular.module('app', ['ngRoute', 'templates'])
   });
 
   $rootScope.backend_endpoint = "https://dignity-hope.org/";
-  if ($location.$$host == 'dev.dah.local')
+  if ($location.$$host == 'dev.dahadmin.local')
     $rootScope.backend_endpoint = "http://localhost:3000/";
 
 });

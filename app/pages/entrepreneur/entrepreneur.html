@@ -1,6 +1,7 @@
-<section class="screenblock light-colour headerify">
+<section class="screenblock light-colour headerify"
+  ng-style="{'background-image': 'url(' + (entrepreneur.newImage ? ('data:image/jpg;base64,' + entrepreneur.newImage.base64) : (backend_endpoint + entrepreneur.image)) + ')'}">
   <div class="content">
-    <h1 class="bottomless">{{entrepreneur.name}}</h1>
+    <h1 class="bottomless"><span ng-show="entrepreneur.id">Editing</span><span ng-show="!entrepreneur.id">Creating</span> {{entrepreneur.name}}</h1>
     <h4 class="headless">{{entrepreneur.city}} {{entrepreneur.countryName}}</h4>
   </div>
 </section>
@@ -8,18 +9,6 @@
 <section class="screenblock">
   <div class="content">
     <entrepreneur-details data="entrepreneur"></entrepreneur-details>
-  </div>
-</section>
-
-<section class="screenblock primary-colour">
-  <div class="content">
-    <location country="entrepreneur.countryName"></location>
-  </div>
-</section>
-
-<section class="screenblock light-colour">
-  <div class="content" id="investors">
-    <h2>{{entrepreneur.investors.length}} <span ng-show="entrepreneur.investors.length != 1">people have</span><span ng-show="entrepreneur.investors.length == 1">person has</span> invested in {{entrepreneur.name}}.</h2>
-    <entrepreneur-investors data="entrepreneur"></entrepreneur-investors>
+    <entrepreneur-investors data="entrepreneur" ng-show></entrepreneur-investors>
   </div>
 </section>

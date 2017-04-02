@@ -1,0 +1,26 @@
+<section class="screenblock">
+  <div class="content">
+    <form name="loginForm" ng-submit="loginForm.$valid && account.login(loginEmailAddress, loginPassword)" ng-show="!account.loginToken" novalidate>
+
+      <h3 class="bottomless">Login</h3>
+
+      <div class="formrow">
+        <div class="formfield field-100">
+          <input type="text" name="email" ng-model="loginEmailAddress" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,10}" id="login-email" required>
+          <label for="login-email">Email</label>
+        </div>
+      </div>
+      <div class="formrow">
+        <div class="formfield field-100">
+          <input type="password" name="password" ng-model="loginPassword" minlength="5" max-length="128" id="login-password" required>
+          <label for="login-password">Password</label>
+        </div>
+      </div>
+      <div class="formrow">
+        <div class="formfield field-100">
+          <button>Login</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

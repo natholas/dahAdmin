@@ -1,5 +1,6 @@
-app.controller('entrepreneurCtrl', function($scope, entrepreneur) {
+app.controller('entrepreneurCtrl', function($scope, entrepreneur, $rootScope) {
 
+  $scope.backend_endpoint = $rootScope.backend_endpoint;
   $scope.entrepreneur = entrepreneur;
 
   $scope.getTemplate = function () {

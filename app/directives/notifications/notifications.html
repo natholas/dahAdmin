@@ -1,5 +1,5 @@
 <div class="notifications">
-  <div class="notification" ng-repeat="notification in Notifications.data.notifications">
+  <div class="notification {{notification.type}}" ng-repeat="notification in Notifications.data.notifications">
     {{notification.message}}
   </div>
 </div>

@@ -1,15 +1,15 @@
 <div class="entrepreneurs row">
-  <a class="entrepreneur" ng-repeat="entrepreneur in data.entrepreneurs | objToArray | orderBy : 'stillNeeded' | filter : {status: 'LIVE'}" ng-href="/entrepreneur/{{entrepreneur.id}}">
+  <a class="entrepreneur" ng-repeat="entrepreneur in data.entrepreneurs | objToArray | orderBy : '-id'" ng-href="/entrepreneur/{{entrepreneur.id}}">
     <div class="tag" ng-show="account.investedEntrepreneurs[entrepreneur.id]">
       INVESTED
     </div>
     <div
-      ng-if="entrepreneur.images[0]"
+      ng-if="entrepreneur.image"
       class="entrepreneur-image"
-      ng-style="{'background-image': 'url(' + backend_endpoint + entrepreneur.images[0] + ')'}">
+      ng-style="{'background-image': 'url(' + backend_endpoint + entrepreneur.image + ')'}">
     </div>
     <div
-      ng-if="!entrepreneur.images[0]"
+      ng-if="!entrepreneur.image"
       class="entrepreneur-image"
       ng-style="{'background-image': 'url(' + backend_endpoint + 'images/entrepreneur_default.svg' + ')'}">
     </div>

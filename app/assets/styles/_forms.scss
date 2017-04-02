@@ -338,6 +338,7 @@ label {
 }
 
 [type='text'] + label,
+[type='date'] + label,
 [type='password'] + label,
 [type='email'] + label,
 [type='number'] + label,
@@ -352,11 +353,13 @@ textarea + label {
 }
 
 [type='text'].ng-not-empty + label,
+[type='date'] + label,
 [type='password'].ng-not-empty + label,
 [type='email'].ng-not-empty + label,
 [type='number'].ng-not-empty + label,
 textarea.ng-not-empty + label,
 [type='text']:focus + label,
+[type='date']:focus + label,
 [type='password']:focus + label,
 [type='email']:focus + label,
 [type='number']:focus + label,
@@ -372,6 +375,7 @@ select + label {
 }
 
 [type='text']:focus + label,
+[type='date']:focus + label,
 [type='password']:focus + label,
 [type='email']:focus + label,
 [type='number']:focus + label,
@@ -382,6 +386,7 @@ select:focus + label {
 }
 
 [type='text'].ng-invalid,
+[type='date'].ng-invalid,
 [type='password'].ng-invalid,
 [type='email'].ng-invalid,
 [type='number'].ng-invalid,
@@ -398,6 +403,10 @@ select.ng-invalid {
       color: $colour-red;
     }
   }
+}
+
+[type='date'] {
+  height: 27px;
 }
 
 

@@ -5,7 +5,10 @@ app.service('Entrepreneurs', function(Network, Entrepreneur, $interval, $q, Boot
   this.getting = {};
 
   this.init = function() {
-    Network.post('end/getentrepreneurs').then(function(response) {
+    var params = {
+      status: 'ALL'
+    }
+    Network.post('end/getentrepreneurs', params).then(function(response) {
       if (response) {
         entr.processEntrepreneurData(response.entrepreneurs);
       }

@@ -8,7 +8,10 @@
       color: inherit;
     }
 
+
     @include box(12, false, false);
+    
+    margin-bottom: #{$gutter*2}!important;
 
     @include media($medium-screen) {
       @include box(6, false, false);
