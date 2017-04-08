@@ -52,12 +52,23 @@
       <div class="formrow">
         <div class="formfield field-100">
           <label for="">Image</label>
-          <input type="file" ng-model="entrepreneur.newImage" accept="image/jpeg" base-sixty-four-input>
+          <input type="file" id="fileInput">
         </div>
       </div>
 
+      <br><br>
+      <div style="height: 500px;">
+        <img-crop
+          image="entrepreneur.tempImage"
+          result-image="entrepreneur.newImage"
+          area-type="square"
+          result-image-size="400"
+          result-image-format="image/jpeg"
+          result-image-quality="0.7"
+        ></img-crop>
+      </div>
+      <!-- <img ng-src="{{entrepreneur.newImage}}" alt=""> -->
     </div>
-
     <div class="sidebar">
 
       <h2>Statistics</h2>
@@ -74,6 +85,17 @@
       <button class="full-width" ng-show="!entrepreneur.id">Add</button>
       <br><br>
       <a href ng-show="entrepreneur.id" ng-click="entrepreneur.reset()">Reset</a>
+      <!-- <br><br>
+      <label for="confirmDeletion">Allow deletion</label>
+      <div class="formrow">
+        <div class="formfield field-25">
+          <input type="checkbox" id="confirmDeletion" class="toggle" ng-model="confirmDeletion">
+        </div>
+        <div class="formfield field-75">
+          <button type="button" class="full-width red" ng-disabled="!confirmDeletion">Delete</button>
+        </div>
+      </div> -->
+
     </div>
 
   </form>

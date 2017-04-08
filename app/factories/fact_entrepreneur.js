@@ -36,6 +36,10 @@ app.factory('Entrepreneur', function(Network, Notifications, $location, $timeout
 
   Entrepreneur.prototype.reset = function () {
     this.updateData(this.origionalData);
+    this.imageChanged = false;
+    this.newImage = '';
+    this.tempImage = '';
+    // window.location.reload();
   };
 
   Entrepreneur.prototype.update = function () {
@@ -43,7 +47,6 @@ app.factory('Entrepreneur', function(Network, Notifications, $location, $timeout
     this.updating = true;
 
     var add = !this.id;
-
     var params = {
       entrepreneurId: this.id,
       name: this.name,
@@ -63,7 +66,7 @@ app.factory('Entrepreneur', function(Network, Notifications, $location, $timeout
       if (response) {
         if (add) entr.id = response.entrepreneurId;
         if (entr.newImage) {
-          entr.addImage(entr.newImage.base64).then(function() {
+          entr.addImage(entr.newImage).then(function() {
             entr.afterUpdate(add, params);
           });
         } else entr.afterUpdate(add, params);
@@ -83,12 +86,14 @@ app.factory('Entrepreneur', function(Network, Notifications, $location, $timeout
   Entrepreneur.prototype.addImage = function (imageData) {
     var params = {
       entrepreneurId: this.id,
-      image: imageData
+      image: imageData.substring(22)
     };
     var entr = this;
     return Network.post('adm/addimage', params).then(function(response) {
       if (response) {
-        entr.origionalData.image = response.imagePath;
+        entr.imageChanged = false;
+        entr.newImage = '';
+        entr.tempImage = '';
         entr.image = response.imagePath;
         entr.newImage = null;
       }

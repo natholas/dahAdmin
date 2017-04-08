@@ -35,7 +35,8 @@ gulp.task('dist', ['clean-dist-folder'], function() {
     minifyJs('dist/main_' + v + '.js', 'dist');
   }, true);
   move('app/assets/fonts/*', 'dist/assets/fonts');
-  move('app/assets/icons/*', 'dist/assets/icons');
+  move('app/assets/fonts/*', 'dist/assets/fonts');
+  move('node_modules/pm-image-editor/compile/minified/*.css', 'dist');
   move('app/.htaccess', 'dist');
   optimizeImages(function() {
     moveV(['app/assets/images/*.*', 'app/assets/images/**/*.*'], 'dist/assets/images');
@@ -74,6 +75,7 @@ gulp.task('dev', ['clean-dev-folder'], function() {
   }, false);
   move('app/assets/fonts/*', 'dev/assets/fonts');
   move('app/assets/icons/*', 'dev/assets/icons');
+  move('node_modules/pm-image-editor/compile/minified/*.css', 'dev');
   move('app/.htaccess', 'dev');
   moveV(['app/assets/images/*.*', 'app/assets/images/**/*.*'], 'dev/assets/images');
 
@@ -158,7 +160,6 @@ function concatJsFiles(dest, callback, preload) {
   return gulp.src([
     'node_modules/angular/angular.min.js',
     'node_modules/angular-route/angular-route.min.js',
-    'node_modules/angular-base64-upload/dist/angular-base64-upload.min.js',
     'app/*.js',
     'app/**/*.js',
     'app/**/**/*.js'

@@ -1,6 +1,6 @@
 app.service('Currency', function(Network) {
   this.current = {
-    sign: 'CHF ',
+    sign: '€',
     exchangeRate: 1
   }
 });

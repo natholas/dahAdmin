@@ -1,17 +1,49 @@
 .notifications {
+  position: fixed;
+  top: $gutter;
+  left: $gutter;
+  color: #fff;
+  z-index: 500;
+
   .notification {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     background-color: $colour-red;
-    color: #fff;
-    z-index: 500;
-    padding: $gutter;
+    padding: $gutter $gutter + 10px $gutter #{$gutter + 35px};
     text-align: center;
+    margin-bottom: $gutter;
+    cursor: pointer;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-image: url('/assets/images/warning_@version@.svg');
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: left $gutter center;
+
+    max-height: 3em;
+    transform: translateX(0);
+    transition: all .5s ease;
+    animation: notice-enter .5s ease-out;
 
     &.good {
-      background: $colour-primary;
+      background-color: $colour-primary;
+      background-image: url('/assets/images/good_@version@.svg');
     }
+
+    &.removing {
+      max-height: 0;
+      margin-bottom: 0;
+      transform: translateX(-100vw);
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+@keyframes notice-enter {
+  from {
+    transform: translateX(-100vw);
+  }
+  to {
+    transform: translateX(0);
   }
 }

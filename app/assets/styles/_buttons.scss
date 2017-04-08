@@ -19,6 +19,10 @@ input[type='submit'] {
     width: 100%;
   }
 
+  &.red {
+    background-color: $colour-red;
+  }
+
   &:not(.close-button):before {
     position: absolute;
     content: '';
@@ -48,6 +52,8 @@ input[type='submit'] {
     &:hover {
       transform: rotate(90deg);
     }
+
+
 
     &:before,
     &:after {

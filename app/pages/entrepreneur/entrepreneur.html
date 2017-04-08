@@ -1,5 +1,5 @@
 <section class="screenblock light-colour headerify"
-  ng-style="{'background-image': 'url(' + (entrepreneur.newImage ? ('data:image/jpg;base64,' + entrepreneur.newImage.base64) : (backend_endpoint + entrepreneur.image)) + ')'}">
+  ng-style="{'background-image': 'url(' + (entrepreneur.imageChanged ? (entrepreneur.newImage) : (backend_endpoint + entrepreneur.image)) + ')'}">
   <div class="content">
     <h1 class="bottomless"><span ng-show="entrepreneur.id">Editing</span><span ng-show="!entrepreneur.id">Creating</span> {{entrepreneur.name}}</h1>
     <h4 class="headless">{{entrepreneur.city}} {{entrepreneur.countryName}}</h4>
